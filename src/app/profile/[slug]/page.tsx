@@ -10,7 +10,7 @@ import React from "react";
 const fetchPosts = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `${process.env.NEXT_URL}/api/post/fetchbyauthor?id=${id}`
+      `${process.env.VERCEL_URL}/api/post/fetchbyauthor?id=${id}`
     );
     return data.posts;
   } catch (error: any) {
@@ -21,7 +21,7 @@ const fetchPosts = async (id: string) => {
 const fetchAuthor = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `${process.env.NEXT_URL}/api/user/fetch?id=${id}`
+      `${process.env.VERCEL_URL}/api/user/fetch?id=${id}`
     );
     return data.user;
   } catch (error: any) {
@@ -38,13 +38,13 @@ const page = async ({ params }: { params: { slug: string } }) => {
     <main className=" p-5  w-[65%]">
       <link rel="icon" href="favicon.ico" sizes="any" />
       {data?.length === 0 ? (
-        <div className="h-screen w-full flex items-center justify-center">
+        <div className="flex items-center justify-center w-full h-screen">
           don't have any posts
         </div>
       ) : (
         <>
           {" "}
-          <h1 className="font-extrabold text-2xl mt-5 mb-5">
+          <h1 className="mt-5 mb-5 text-2xl font-extrabold">
             {/* Explore The Time Line of {user?.name} : */}
           </h1>
           {/* <Feed data={data} /> */}

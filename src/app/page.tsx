@@ -1,4 +1,3 @@
-"use client";
 import Article from "@/components/Articles/Article";
 import CategoryBar from "@/components/CategoryBar/CategoryBar";
 import axios from "axios";

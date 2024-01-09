@@ -8,10 +8,10 @@ import Feed from "@/components/feed/Feed";
 
 const fetchPosts = async () => {
   try {
-    const { data } = await axios.get(
-      `https://blog-story.vercel.app/api/post/fetch`
-    );
-
+    const res = await fetch(`https://blog-story.vercel.app/api/post/fetch`, {
+      cache: "no-store",
+    });
+    const data = await res.json();
     console.log(data.posts.length);
 
     return data.posts;

@@ -9,9 +9,13 @@ import Animation from "@/Animation/Animation";
 
 const fetchPostsCategory = async (category: string) => {
   try {
-    const { data } = await axios.get(
-      `https://blog-story.vercel.app/api/post/fetch?category=${category}`
+    const res = await fetch(
+      `https://blog-story.vercel.app/api/post/fetch?category=${category}`,
+      {
+        cache: "no-store",
+      }
     );
+    const data = await res.json();
     return data.posts;
   } catch (error) {
     console.log(error);

@@ -106,7 +106,7 @@ const Article = ({ props }: { props: any }) => {
           {" "}
           <h1 className="mt-4 text-lg font-semibold">{props.title}</h1>
           <p className="mt-2 text-xs text-gray-500">
-            {props.content.slice(0, 200)}
+            {props.content.replace(/<[^>]*>/g, "").slice(0, 200)}
           </p>
         </div>
       </div>

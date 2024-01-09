@@ -54,8 +54,8 @@ const Article = ({ props }: { props: any }) => {
       .delete(`api/post/delete?id=${props._id}`)
       .then(() => {
         window.location.reload();
-        // alert("Deleted");
-        // router.refresh();
+        alert("Deleted");
+        router.refresh();
       })
       .catch((error) => console.log(error));
   };
@@ -90,7 +90,7 @@ const Article = ({ props }: { props: any }) => {
           {" "}
           <h1 className="mt-4 text-lg font-semibold">{props.title}</h1>
           <p className="mt-2 text-xs text-gray-500">
-            {props.content.replace(/<[^>]*>/g, '').slice(0, 350)}
+            {props.content.replace(/<[^>]*>/g, "").slice(0, 350)}
           </p>
         </div>
         <img src={props.image} className="rounded-lg w-52 h-36" />

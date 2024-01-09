@@ -10,7 +10,7 @@ import React from "react";
 const fetchPosts = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `${process.env.VERCEL_URL}/api/post/fetchbyauthor?id=${id}`
+      `http://${process.env.VERCEL_URL}/api/post/fetchbyauthor?id=${id}`
     );
     return data.posts;
   } catch (error: any) {
@@ -21,7 +21,7 @@ const fetchPosts = async (id: string) => {
 const fetchAuthor = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `${process.env.VERCEL_URL}/api/user/fetch?id=${id}`
+      `http://${process.env.VERCEL_URL}/api/user/fetch?id=${id}`
     );
     return data.user;
   } catch (error: any) {

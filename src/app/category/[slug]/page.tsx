@@ -10,7 +10,7 @@ import Animation from "@/Animation/Animation";
 const fetchPostsCategory = async (category: string) => {
   try {
     const { data } = await axios.get(
-      `${process.env.VERCEL_URL}/api/post/fetch?category=${category}`
+      `http://${process.env.VERCEL_URL}/api/post/fetch?category=${category}`
     );
     return data.posts;
   } catch (error) {

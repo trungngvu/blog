@@ -8,7 +8,9 @@ import Feed from "@/components/feed/Feed";
 
 const fetchPosts = async () => {
   try {
-    const { data } = await axios.get(`/api/post/fetch`);
+    const { data } = await axios.get(
+      `https://blog-story.vercel.app/api/post/fetch`
+    );
 
     console.log(data.posts.length);
 

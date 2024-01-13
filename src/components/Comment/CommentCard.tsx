@@ -45,7 +45,7 @@ const CommentCard = ({
 
       <div className="relative w-full p-3 border border-gray-300 rounded-md min-w-max">
         {props?.comment}
-        {data.user.id === author && (
+        {data?.user?.id === author && (
           <div
             className="absolute font-bold cursor-pointer right-5 top-2"
             onClick={async () => {

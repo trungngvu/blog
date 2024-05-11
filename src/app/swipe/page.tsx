@@ -27,15 +27,15 @@ function Advanced() {
   }, []);
   const currentIndexRef = useRef(currentIndex);
 
-  const childRefs = useMemo(
+  const childRefs = useMemo<any>(
     () =>
       Array(db.length)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [db.length]
   );
 
-  const updateCurrentIndex = (val) => {
+  const updateCurrentIndex = (val: number) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
   };
@@ -45,12 +45,12 @@ function Advanced() {
   const canSwipe = currentIndex >= 0;
 
   // set last direction and decrease current index
-  const swiped = (direction, nameToDelete, index) => {
+  const swiped = (direction: any, index: number) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
 
-  const outOfFrame = (name, idx) => {
+  const outOfFrame = (name: any, idx: any) => {
     console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
@@ -59,7 +59,7 @@ function Advanced() {
     // during latest swipes. Only the last outOfFrame event should be considered valid
   };
 
-  const swipe = async (dir) => {
+  const swipe = async (dir: string) => {
     if (canSwipe && currentIndex < db.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
@@ -75,14 +75,14 @@ function Advanced() {
 
   return (
     <div className="flex flex-col items-center xl:w-[70%] grow xl:grow-0 pt-10 gap-5">
-      <h1 className="text-xl font-bold">Lựa chọn quán ăn</h1>
+      <h1 className="text-xl font-bold">Restaurant Finder</h1>
       <div className="cardContainer">
-        {db?.map((character, index) => (
+        {db?.map((character: any, index: number) => (
           <TinderCard
             ref={childRefs[index]}
             className="swipe"
             key={character.title}
-            onSwipe={(dir) => swiped(dir, character.title, index)}
+            onSwipe={(dir) => swiped(dir, character.title)}
             onCardLeftScreen={() => outOfFrame(character.title, index)}
           >
             <div
@@ -96,19 +96,19 @@ function Advanced() {
       </div>
       <div className="buttons">
         <button
-          style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+          style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
           onClick={() => swipe("left")}
         >
           Swipe left!
         </button>
         <button
-          style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
+          style={{ backgroundColor: !canGoBack ? "#c3c4d3" : "" }}
           onClick={() => goBack()}
         >
           Undo swipe!
         </button>
         <button
-          style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+          style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
           onClick={() => swipe("right")}
         >
           Swipe right!

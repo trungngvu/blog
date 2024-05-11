@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Providers from "./Providers";
 import "./globals.css";
 import { Poppins, Roboto } from "next/font/google";
+import AskAIButton from "@/components/SwipeButton";
 
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { LoginModalStore } from "../../store/LoginModalStore";
@@ -34,15 +35,18 @@ export default function RootLayout({
           <LoginModal />
           <AboutModal />
           <SocialModal />
-          <div className="flex relative mt-20">
+          <div className="relative flex mt-20">
             {children}
 
-            <div className="hidden  xl:block">
+            <div className="hidden xl:block">
               {" "}
               <Sidebar />
             </div>
           </div>
         </Providers>
+        <div className="fixed z-50 bottom-7 right-5">
+          <AskAIButton />
+        </div>
       </body>
     </html>
   );

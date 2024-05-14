@@ -13,12 +13,12 @@ import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 
 const people = [
-  { name: "Choose Category" },
-  { name: "Sports" },
-  { name: "Entertainment" },
-  { name: "Science" },
-  { name: "Technology" },
-  { name: "Space" },
+  { name: "Food" },
+  { name: "Drinks" },
+  { name: "Rice" },
+  { name: "Noodles" },
+  { name: "Bread" },
+  { name: "Porridge" },
 ];
 
 export default function Home() {

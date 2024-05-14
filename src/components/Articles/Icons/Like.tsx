@@ -11,12 +11,12 @@ const Like = ({ onClick }: { onClick: any }) => {
       stroke="#000000"
       onClick={onClick}
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0" />
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
 
       <g id="SVGRepo_iconCarrier">

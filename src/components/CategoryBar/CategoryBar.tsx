@@ -17,33 +17,38 @@ const CategoryBar = () => {
   const data = [
     {
       id: 0,
-      label: "Home",
+      label: "All",
       path: "/",
     },
     {
+      id: 0.1,
+      label: "Food",
+      path: "/category/food",
+    },
+    {
       id: 1,
-      label: "Sports",
-      path: "/category/sports",
+      label: "Drinks",
+      path: "/category/drinks",
     },
     {
       id: 2,
-      label: "Entertainment",
-      path: "/category/entertainment",
+      label: "Rice",
+      path: "/category/rice",
     },
     {
       id: 3,
-      label: "Science",
-      path: "/category/science",
+      label: "Noodles",
+      path: "/category/noodles",
     },
     {
       id: 4,
-      label: "Technology",
-      path: "/category/technology",
+      label: "Bread",
+      path: "/category/bread",
     },
     {
       id: 5,
-      label: "Space",
-      path: "/category/space",
+      label: "Porridge",
+      path: "/category/porridge",
     },
   ];
 

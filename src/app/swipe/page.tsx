@@ -117,7 +117,7 @@ function Advanced() {
           <div className="buttons">
             <button
               onClick={() => setStep(1)}
-              style={{ backgroundColor: "blue" }}
+              style={{ backgroundColor: "blue", zIndex: 100 }}
             >
               Next!!
             </button>

@@ -5,6 +5,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  coordinates: {
+    type: String,
+    required: true,
+  },
   content: {
     type: String,
     required: true,

@@ -9,15 +9,17 @@ const Sidebar = () => {
   const pathname = usePathname();
   console.log();
   return (
-    <div className=" shadow-xl border-black  fixed  top-24 right-0 h-screen min-w-[35%] p-10">
-      {pathname.split("/")[1] == "profile" ? (
-        <UserProfile />
-      ) : (
-        <div className="">
-          <SubscriptionCard />
-          <UserCard />
-        </div>
-      )}
+    <div className=" shadow-xl border-black overflow-y-scroll no-scrollbar fixed top-24 right-0 h-screen min-w-[35%] p-10">
+      <div className="overflow-scroll">
+        {pathname.split("/")[1] == "profile" ? (
+          <UserProfile />
+        ) : (
+          <div className="">
+            <SubscriptionCard />
+            <UserCard />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -30,6 +30,7 @@ export default function Home() {
 
   const [data, setData] = useState({
     title: "",
+    coordinates: "",
     content: "",
     image: "",
   });
@@ -76,10 +77,19 @@ export default function Home() {
             placeholder="Enter title.. "
             onChange={(e) => setData({ ...data, title: e.target.value })}
           />
+          <input
+            type="text"
+            name={data.coordinates}
+            value={data.coordinates}
+            className="w-60 mt-5 mr-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            placeholder="Enter coordinates.."
+            onChange={(e) => setData({ ...data, coordinates: e.target.value })}
+          />
+          <span className="text-gray-400">Example: 105°48′00″E;21°02′00″N</span>
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
             <Editor onChange={(e) => setData({ ...data, content: e })} />
           </div>
-          <div className="flex gap-12 ">
+          <div className="flex gap-12">
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {

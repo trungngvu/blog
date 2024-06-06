@@ -17,6 +17,7 @@ export const POST = async (request: NextRequest) => {
     }
     await Post.create({
       title: data.title,
+      coordinates: data.coordinates,
       content: data.content,
       image: data.image,
 

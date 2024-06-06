@@ -30,7 +30,10 @@ function Advanced() {
       setCurrentIndex(data.length - 1);
     });
   }, []);
+
   const currentIndexRef = useRef(currentIndex);
+
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const childRefs = useMemo<any>(
     () =>
@@ -79,6 +82,12 @@ function Advanced() {
   };
 
   const list = [
+    "Food",
+    "Drinks",
+    "Rice",
+    "Noodles",
+    "Bread",
+    "Porridge",
     "Bún đậu mắm tôm",
     "Bún chả",
     "Bánh cuốn",
@@ -88,7 +97,7 @@ function Advanced() {
     "Cơm thố",
     "Bia",
     "Rượu",
-    " Cà phê",
+    "Cà phê",
     "Bún đậu mắm tôm",
     "Bún đậu mắm tôm",
     "Chả cá",
@@ -99,6 +108,11 @@ function Advanced() {
     "Bún cá",
   ];
 
+  const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);
+  useEffect(() => {
+    setSelectedItemsName(selectedItems.map((i: number) => list[i]));
+  }, [selectedItems]);
+
   return (
     <div className="flex flex-col items-center xl:w-[70%] grow xl:grow-0 pt-10 gap-5">
       {step === 0 ? (
@@ -108,7 +122,8 @@ function Advanced() {
             {list.map((item, index) => (
               <div
                 key={index}
-                className="p-3 border cursor-pointer border-slate-500 rounded-3xl text-slate-500"
+                className={`p-3 border cursor-pointer border-slate-500 rounded-3xl text-slate-500 ${selectedItems.includes(index) ? "bg-slate-500 text-white" : ""}`}
+                onClick={() => { setSelectedItems((prev: number[]) => prev.includes(index) ? prev.filter((i: number) => i !== index) : [...prev, index])}}
               >
                 {item}
               </div>
@@ -127,7 +142,7 @@ function Advanced() {
         <>
           <h1 className="text-xl font-bold">Restaurant Finder</h1>
           <div className="cardContainer">
-            {db?.map((character: any, index: any) => (
+            {db?.filter((e: any) => selectedItemsName.includes(e.category))?.map((character: any, index: any) => (
               <TinderCard
                 ref={childRefs[index]}
                 className="swipe"

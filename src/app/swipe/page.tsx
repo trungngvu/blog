@@ -82,6 +82,12 @@ function Advanced() {
   };
 
   const list = [
+    "Food",
+    "Drinks",
+    "Rice",
+    "Noodles",
+    "Bread",
+    "Porridge",
     "Bún đậu mắm tôm",
     "Bún chả",
     "Bánh cuốn",
@@ -100,7 +106,6 @@ function Advanced() {
     "Cà phê",
     "Xôi",
     "Bún cá",
-    "Food"
   ];
 
   const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);

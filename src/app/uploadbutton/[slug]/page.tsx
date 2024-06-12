@@ -31,6 +31,7 @@ export default function Home() {
   const pathname = usePathname();
   const [isUpdate, setIsUpdate] = useState(false);
   const [postCoor, setPostCoor] = useState([]);
+  const [idUpdate, setIdUpdate] = useState("");
 
   const [data, setData] = useState({
     title: "",
@@ -40,16 +41,12 @@ export default function Home() {
   });
 
  useEffect(() => {
-  const fetchData = async (id: string) => {
-    console.log("id in a post by id: ", id);
-    
+  const fetchData = async () => {
     try {
-      const posts = await fetch(`http://localhost:3000/api/post/fetch?id=${id}`, {
+      const posts = await fetch(`/api/post/fetch?id=${idUpdate}`, {
         cache: "no-store",
       });
       const data = await posts.json();
-
-      console.log("data in a post by id: ", data);
 
       if (data) {
         setData({
@@ -67,23 +64,23 @@ export default function Home() {
   };
 
   if (pathname.split("/")[2].includes("update")) {
-    const id = pathname.split("/")[2].split("-")[1];
+    setIdUpdate(pathname.split("/")[2].split("-")[1]);
     setIsUpdate(true);
-    fetchData(id.toString());
+    fetchData();
   }
 
-  }, [pathname]);
+  }, [pathname, idUpdate]);
 
   // get full post data
   useEffect(() => {
     const fetchPosts = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/post/fetch`, {
+      const res = await fetch(`/api/post/fetch`, {
         cache: "no-store",
       });
       const data = await res.json();
 
-      setPostCoor(data.posts.map((post) => ({
+      setPostCoor(data.posts.filter((post) => !!post.coordinates).map((post) => ({
         label: post.coordinates,
         value: post.coordinates,
       })));
@@ -115,7 +112,7 @@ export default function Home() {
     setLoading(true);
 
     const response = await axios
-      .post("/api/post/update", { ...data, category: selected.name })
+      .put(`/api/post/update?id=${idUpdate}`, { ...data, category: selected.name })
       .then(() => {
         setLoading(false);
         router.refresh();
@@ -153,22 +150,25 @@ export default function Home() {
             placeholder="Enter title.. "
             onChange={(e) => setData({ ...data, title: e.target.value })}
           />
-          <input
+          {/* <input
             type="text"
             name={data.coordinates}
             value={data.coordinates}
             className="w-60 mt-5 mr-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             placeholder="Enter coordinates.."
             onChange={(e) => setData({ ...data, coordinates: e.target.value })}
-          />
+          /> */}
           <Select
-            value={data.coordinates}
-            onChange={(e) => setData({ ...data, coordinates: e?.value })}
+            className="mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             options={postCoor}
-            isClearable
-            placeholder="Select coordinates..."
+            onChange={(e) => setData((prev) => ({ ...prev, coordinates: e.value }))}
+            value={{ label: data.coordinates, value: data.coordinates }}
+            placeholder="Select or type address..."
+            isSearchable={true}
+            getOptionValue={(option) => option.value}
+            name={data.coordinates}
           />
-          <span className="text-gray-400">Example: 105°48′00″E;21°02′00″N</span>
+          {/* <span className="text-gray-400">Example: 105°48′00″E;21°02′00″N</span> */}
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
             <Editor onChange={(e) => setData({ ...data, content: e })} />
           </div>
@@ -202,9 +202,9 @@ export default function Home() {
             <button
               disabled={btn}
               type="button"
-              onClick={isUpdate ? handleSubmit : handleUpdate}
+              onClick={isUpdate ? handleUpdate : handleSubmit}
               className={`${
-                data.image.length == 0 ? "cursor-progress" : ""
+                data?.image?.length == 0 ? "cursor-progress" : ""
               }text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-xs md:text-sm  px-5 py-2.5 w-[50%]  md:w-[30%] `}
             >
               {loading ? (

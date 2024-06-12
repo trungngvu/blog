@@ -6,7 +6,7 @@ import React from "react";
 const fetchSingelPost = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `https://blog-story.vercel.app/api/post/fetch?id=${id}`
+      `${process.env.NEXTAUTH_URL}/api/post/fetch?id=${id}`
     );
     return data?.posts;
   } catch (error) {

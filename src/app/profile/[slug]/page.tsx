@@ -10,7 +10,7 @@ import React from "react";
 const fetchPosts = async (id: string) => {
   try {
     const { data } = await axios.get(
-      `https://blog-story.vercel.app/api/post/fetchbyauthor?id=${id}`
+      `${process.env.NEXTAUTH_URL}/api/post/fetchbyauthor?id=${id}`
     );
     return data.posts;
   } catch (error: any) {

@@ -10,7 +10,7 @@ import Animation from "@/Animation/Animation";
 const fetchPostsCategory = async (category: string) => {
   try {
     const res = await fetch(
-      `https://blog-story.vercel.app/api/post/fetch?category=${category}`,
+      `${process.env.NEXTAUTH_URL}/api/post/fetch?category=${category}`,
       {
         cache: "no-store",
       }

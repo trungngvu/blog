@@ -3,7 +3,7 @@ import Feed from "@/components/feed/Feed";
 
 const fetchPosts = async () => {
   try {
-    const res = await fetch(`https://blog-story.vercel.app/api/post/fetch`, {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/post/fetch`, {
       cache: "no-store",
     });
     const data = await res.json();

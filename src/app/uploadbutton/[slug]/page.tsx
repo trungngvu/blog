@@ -2,10 +2,10 @@
 
 // You need to import our styles for the button to look right. Best to import in the root /layout.tsx but this is fine
 import "@uploadthing/react/styles.css";
-
+import Select from "react-select";
 import { UploadButton } from "../../../utills/uploadthing";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import DropDown from "@/components/DropDown/DropDown";
 import Editor from "@/components/Quill";
 import { title } from "process";
@@ -21,12 +21,16 @@ const people = [
   { name: "Porridge" },
 ];
 
+
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(people[0]);
   const [btn, setButton] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [postCoor, setPostCoor] = useState([]);
 
   const [data, setData] = useState({
     title: "",
@@ -34,6 +38,56 @@ export default function Home() {
     content: "",
     image: "",
   });
+
+ useEffect(() => {
+  const fetchData = async (id: string) => {
+    try {
+      const posts = await fetch(`https://blog-story.vercel.app/api/post/fetch?id=${id}`, {
+        cache: "no-store",
+      });
+      const data = await posts.json();
+
+      if (data) {
+        setData({
+          title: data.posts.title,
+          coordinates: data.posts.coordinates,
+          content: data.posts.content,
+          image: data.posts.image,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (pathname.split("/")[2].includes("update")) {
+    const id = pathname.split("/")[2].split("-")[1];
+    setIsUpdate(true);
+    fetchData(id.toString());
+  }
+
+  }, [pathname]);
+
+  // get full post data
+  useEffect(() => {
+    const fetchPosts = async () => {
+    try {
+      const res = await fetch(`https://blog-story.vercel.app/api/post/fetch`, {
+        cache: "no-store",
+      });
+      const data = await res.json();
+
+      setPostCoor(data.posts.map((post) => ({
+        label: post.coordinates,
+        value: post.coordinates,
+      })));
+    } catch (error) {
+      console.log(error);
+    }}
+
+    fetchPosts();
+
+  }, []);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -51,7 +105,23 @@ export default function Home() {
       });
   };
 
-  const handleUpdate = async () => {};
+  const handleUpdate = async () => {
+    setLoading(true);
+
+    const response = await axios
+      .post("/api/post/update", { ...data, category: selected.name })
+      .then(() => {
+        setLoading(false);
+        router.refresh();
+        router.push("/");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+
+  };
+
   return (
     <main className="flex min-h-screen w-full xl:w-[70%]    flex-col p-5  sm:p-10   lg:p-24">
       <h1 className="w-full mb-5 font-bold text-left text-black">
@@ -84,6 +154,13 @@ export default function Home() {
             className="w-60 mt-5 mr-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             placeholder="Enter coordinates.."
             onChange={(e) => setData({ ...data, coordinates: e.target.value })}
+          />
+          <Select
+            value={data.coordinates}
+            onChange={(e) => setData({ ...data, coordinates: e.value })}
+            options={postCoor}
+            isClearable
+            placeholder="Select coordinates..."
           />
           <span className="text-gray-400">Example: 105°48′00″E;21°02′00″N</span>
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
@@ -119,7 +196,7 @@ export default function Home() {
             <button
               disabled={btn}
               type="button"
-              onClick={handleSubmit}
+              onClick={isUpdate ? handleSubmit : handleUpdate}
               className={`${
                 data.image.length == 0 ? "cursor-progress" : ""
               }text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-xs md:text-sm  px-5 py-2.5 w-[50%]  md:w-[30%] `}

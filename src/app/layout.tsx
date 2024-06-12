@@ -37,11 +37,7 @@ export default function RootLayout({
           <SocialModal />
           <div className="relative flex mt-20">
             {children}
-
-            <div className="hidden xl:block">
-              {" "}
               <Sidebar />
-            </div>
           </div>
         </Providers>
         <div className="fixed z-50 bottom-7 right-5">

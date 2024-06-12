@@ -59,7 +59,6 @@ const Article = ({ props }: { props: any }) => {
       })
       .catch((error) => console.log(error));
   };
-
   return (
     <div className="p-5 mt-4 transition-all duration-300 ease-in-out bg-white shadow-lg cursor-pointer hover:shadow-2xl">
       <div className="flex items-center gap-3">
@@ -124,7 +123,7 @@ const Article = ({ props }: { props: any }) => {
           {props.author.id === data?.user.id ? (
             <div className="flex items-center justify-center gap-4 md:gap-8">
               <Delete onClick={onDelete} />
-              <Link href={`/uploadbutton/update`}>
+              <Link href={`/uploadbutton/update-${props._id}`}>
                 {" "}
                 <Edit />
               </Link>

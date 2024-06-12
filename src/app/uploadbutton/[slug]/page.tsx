@@ -11,18 +11,11 @@ import Editor from "@/components/Quill";
 import { title } from "process";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
-
-const people = [
-  { name: "Food" },
-  { name: "Drinks" },
-  { name: "Rice" },
-  { name: "Noodles" },
-  { name: "Bread" },
-  { name: "Porridge" },
-];
+import dataMenu from "../../swipe/menu.json"
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
+  const [people, setPeople] = useState<{name: string}[]>([]);
   const [selected, setSelected] = useState(people[0]);
   const [btn, setButton] = useState(false);
   const router = useRouter();
@@ -38,6 +31,10 @@ export default function Home() {
     content: "",
     image: "",
   });
+
+  useEffect(() => {
+    setPeople(dataMenu.map((item) => ({ name: item.food })));
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

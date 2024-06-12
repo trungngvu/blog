@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useState, useMemo, useRef, useEffect, use } from "react";
 import TinderCard from "react-tinder-card";
 import data from "./menu.json";
+import axios from "axios";
 
 const fetchPosts = async () => {
   try {
@@ -54,7 +55,9 @@ function Advanced() {
   const canSwipe = currentIndex >= 0;
 
   // set last direction and decrease current index
-  const swiped = (direction: any, nameToDelete: any, index: number) => {
+  const swiped = async (direction: any, nameToDelete: any, index: number) => {
+    if (direction === "right")
+      await axios.put("/api/user/like", { food: db[index]._id });
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
@@ -70,6 +73,7 @@ function Advanced() {
 
   const swipe = async (dir: string) => {
     if (canSwipe && currentIndex < db.length) {
+      if (dir === "right") await axios.put("/api/like", {});
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -86,11 +90,14 @@ function Advanced() {
   useEffect(() => {
     setList(data.map((item) => item?.food));
   }, []);
-  
 
   const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);
   useEffect(() => {
-    setSelectedItemsName(selectedItems.map((i: number) => list[i]));
+    setDb((prev: any) =>
+      prev?.filter((e: any) =>
+        selectedItems.map((i: number) => list[i]).includes(e.category)
+      )
+    );
   }, [selectedItems]);
 
   return (
@@ -102,8 +109,16 @@ function Advanced() {
             {list.map((item, index) => (
               <div
                 key={index}
-                className={`p-3 border cursor-pointer border-slate-500 rounded-3xl text-slate-500 ${selectedItems.includes(index) ? "bg-slate-500 text-white" : ""}`}
-                onClick={() => { setSelectedItems((prev: number[]) => prev.includes(index) ? prev.filter((i: number) => i !== index) : [...prev, index])}}
+                className={`p-3 border cursor-pointer border-slate-500 rounded-3xl text-slate-500 ${
+                  selectedItems.includes(index) ? "bg-slate-500 text-white" : ""
+                }`}
+                onClick={() => {
+                  setSelectedItems((prev: number[]) =>
+                    prev.includes(index)
+                      ? prev.filter((i: number) => i !== index)
+                      : [...prev, index]
+                  );
+                }}
               >
                 {item}
               </div>
@@ -122,7 +137,7 @@ function Advanced() {
         <>
           <h1 className="text-xl font-bold">Restaurant Finder</h1>
           <div className="cardContainer">
-            {db?.filter((e: any) => selectedItemsName.includes(e.category))?.map((character: any, index: any) => (
+            {db?.map((character: any, index: any) => (
               <TinderCard
                 ref={childRefs[index]}
                 className="swipe"
@@ -146,15 +161,12 @@ function Advanced() {
             >
               Swipe left!
             </button>
-            <button
-              style={{ backgroundColor: !canGoBack ? "#c3c4d3" : "" }}
-              onClick={() => goBack()}
-            >
-              Undo swipe!
-            </button>
+
             <button
               style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
-              onClick={() => swipe("right")}
+              onClick={() => {
+                swipe("right");
+              }}
             >
               Swipe right!
             </button>

@@ -1,5 +1,7 @@
 import mongoose, { model, models } from "mongoose";
 
+const Schema = mongoose.Schema;
+
 const userSchema = new mongoose.Schema({
   name: {
     required: true,
@@ -19,6 +21,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  like: [{ type: Schema.Types.ObjectId, ref: "Post" }],
 
   socials: {
     github: {

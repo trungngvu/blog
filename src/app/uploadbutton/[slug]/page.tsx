@@ -2,7 +2,7 @@
 
 // You need to import our styles for the button to look right. Best to import in the root /layout.tsx but this is fine
 import "@uploadthing/react/styles.css";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import { UploadButton } from "../../../utills/uploadthing";
 
 import { use, useEffect, useState } from "react";
@@ -28,65 +28,66 @@ export default function Home() {
   const router = useRouter();
   const pathname = usePathname();
   const [isUpdate, setIsUpdate] = useState(false);
-  const [postCoor, setPostCoor] = useState([]);
+  const [postCoor, setPostCoor] = useState<any>([]);
+  const [idUpdate, setIdUpdate] = useState("");
 
   const [data, setData] = useState({
     title: "",
-    coordinates: "",
+    restaurantName: "",
+    address: "",
     content: "",
     image: "",
   });
 
   useEffect(() => {
-    const fetchData = async (id: string) => {
-      console.log("id in a post by id: ", id);
-
+    const fetchData = async () => {
       try {
-        const posts = await fetch(
-          `${process.env.NEXTAUTH_URL}api/post/fetch?id=${id}`,
-          {
-            cache: "no-store",
-          }
-        );
+        const posts = await fetch(`/api/post/fetch?id=${idUpdate}`, {
+          cache: "no-store",
+        });
         const data = await posts.json();
-
-        console.log("data in a post by id: ", data);
 
         if (data) {
           setData({
             title: data.posts.title,
-            coordinates: data.posts.coordinates,
+            restaurantName: data.posts.address,
+            address: data.posts.address,
             content: data.posts.content,
             image: data.posts.image,
           });
         }
-      } catch (error) {
-        console.log(error);
-        console.log("error in a post by id: ", error);
+      } catch {}
+
+      if (pathname.split("/")[2].includes("update")) {
+        const id = pathname.split("/")[2].split("-")[1];
+        setIsUpdate(true);
+        fetchData();
       }
     };
 
     if (pathname.split("/")[2].includes("update")) {
-      const id = pathname.split("/")[2].split("-")[1];
+      setIdUpdate(pathname.split("/")[2].split("-")[1]);
       setIsUpdate(true);
-      fetchData(id.toString());
+      fetchData();
     }
-  }, [pathname]);
+  }, [pathname, idUpdate]);
 
   // get full post data
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`${process.env.NEXTAUTH_URL}api/post/fetch`, {
+        const res = await fetch(`/api/post/fetch`, {
           cache: "no-store",
         });
         const data = await res.json();
 
         setPostCoor(
-          data.posts.map((post: any) => ({
-            label: post.coordinates,
-            value: post.coordinates,
-          }))
+          data.posts
+            .filter((post: any) => !!post.restaurantName)
+            .map((post: any) => ({
+              label: post.restaurantName,
+              value: post.address,
+            }))
         );
       } catch (error) {
         console.log(error);
@@ -98,6 +99,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     setLoading(true);
+    console.log("data", data);
 
     const response = await axios
       .post("/api/post/create", { ...data, category: selected.name })
@@ -116,7 +118,10 @@ export default function Home() {
     setLoading(true);
 
     const response = await axios
-      .post("/api/post/update", { ...data, category: selected.name })
+      .put(`/api/post/update?id=${idUpdate}`, {
+        ...data,
+        category: selected.name,
+      })
       .then(() => {
         setLoading(false);
         router.refresh();
@@ -126,6 +131,20 @@ export default function Home() {
         setLoading(false);
         console.log(error);
       });
+  };
+
+  const handleCreate = (inputValue: string) => {
+    const option = {
+      value: "",
+      label: inputValue,
+    };
+
+    setPostCoor((prev: any) => [...prev, option]);
+    setData((prev) => ({
+      ...prev,
+      restaurantName: option.label,
+      address: option.value,
+    }));
   };
 
   return (
@@ -151,24 +170,38 @@ export default function Home() {
             value={data.title}
             className="w-full p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             placeholder="Enter title.. "
-            onChange={(e) => setData({ ...data, title: e.target.value })}
+            onChange={(e) =>
+              setData((prev) => {
+                return { ...prev, title: e.target.value };
+              })
+            }
+          />
+          <CreatableSelect
+            className="mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            options={postCoor}
+            onChange={(e) => {
+              setData((prev: any) => ({
+                ...prev,
+                restaurantName: e?.label,
+                address: e?.value,
+              }));
+            }}
+            onCreateOption={handleCreate}
+            value={{ label: data.restaurantName, value: data.address }}
+            placeholder="Select or type restaurant name..."
+            isSearchable={true}
+            getOptionValue={(option) => option.label}
+            name={data.restaurantName}
+            isClearable
           />
           <input
             type="text"
-            name={data.coordinates}
-            value={data.coordinates}
-            className="p-2 mt-5 mr-5 text-xs border rounded-lg w-60 md:text-lg focus:outline-none border-slate-500"
-            placeholder="Enter coordinates.."
-            onChange={(e) => setData({ ...data, coordinates: e.target.value })}
+            name={data.address}
+            value={data.address}
+            className="w-full mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            placeholder="Enter address.. "
+            onChange={(e) => setData({ ...data, address: e.target.value })}
           />
-          <Select
-            value={data.coordinates}
-            onChange={(e) => setData({ ...data, coordinates: e?.value })}
-            options={postCoor}
-            isClearable
-            placeholder="Select coordinates..."
-          />
-          <span className="text-gray-400">Example: 105°48′00″E;21°02′00″N</span>
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
             <Editor onChange={(e) => setData({ ...data, content: e })} />
           </div>
@@ -202,9 +235,9 @@ export default function Home() {
             <button
               disabled={btn}
               type="button"
-              onClick={isUpdate ? handleSubmit : handleUpdate}
+              onClick={isUpdate ? handleUpdate : handleSubmit}
               className={`${
-                data.image.length == 0 ? "cursor-progress" : ""
+                data?.image?.length == 0 ? "cursor-progress" : ""
               }text-black bg-slate-300 hover:bg-slate-400 focus:outline-none  font-medium rounded-full text-xs md:text-sm  px-5 py-2.5 w-[50%]  md:w-[30%] `}
             >
               {loading ? (

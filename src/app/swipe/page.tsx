@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useRef, useEffect, use } from "react";
 import TinderCard from "react-tinder-card";
+import data from "./menu.json";
 
 const fetchPosts = async () => {
   try {
@@ -81,32 +82,11 @@ function Advanced() {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  const list = [
-    "Food",
-    "Drinks",
-    "Rice",
-    "Noodles",
-    "Bread",
-    "Porridge",
-    "Bún đậu mắm tôm",
-    "Bún chả",
-    "Bánh cuốn",
-    "Phở",
-    "Bún cá",
-    "Xôi",
-    "Cơm thố",
-    "Bia",
-    "Rượu",
-    "Cà phê",
-    "Bún đậu mắm tôm",
-    "Bún đậu mắm tôm",
-    "Chả cá",
-    "Sushi",
-    "Cơm thố",
-    "Cà phê",
-    "Xôi",
-    "Bún cá",
-  ];
+  const [list, setList] = useState<string[]>([]);
+  useEffect(() => {
+    setList(data.map((item) => item?.food));
+  }, []);
+  
 
   const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);
   useEffect(() => {

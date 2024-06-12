@@ -1,0 +1,356 @@
+[
+  {
+    "food": "Phở bò",
+    "restaurant": "Quán phở Thìn",
+    "address": "13 Lò Đúc, Hai Bà Trưng",
+    "description": "Phở bò tại quán phở Thìn có nước dùng đậm đà, thịt bò mềm, thơm ngon."
+  },
+  {
+    "food": "Phở gà",
+    "restaurant": "Phở gà Trường Chinh",
+    "address": "240 Trường Chinh, Đống Đa",
+    "description": "Phở gà tại đây sử dụng gà ta, nước dùng ngọt thanh, hấp dẫn."
+  },
+  {
+    "food": "Bún chả",
+    "restaurant": "Bún chả Hàng Mành",
+    "address": "1 Hàng Mành, Hoàn Kiếm",
+    "description": "Bún chả tại đây nổi tiếng với chả nướng thơm, nước mắm chua ngọt, rau sống tươi ngon."
+  },
+  {
+    "food": "Bún riêu cua",
+    "restaurant": "Bún riêu Hồng Phúc",
+    "address": "18 Hồng Phúc, Ba Đình",
+    "description": "Bún riêu cua đậm đà, ăn kèm đậu hũ, cà chua và rau sống."
+  },
+  {
+    "food": "Bún bò Huế",
+    "restaurant": "Bún bò Huế O Xuân",
+    "address": "140 Ngô Gia Tự, Long Biên",
+    "description": "Bún bò Huế tại đây có nước dùng cay nồng, thịt bò mềm, giò heo béo ngậy."
+  },
+  {
+    "food": "Bún thịt nướng",
+    "restaurant": "Bún thịt nướng Hàng Buồm",
+    "address": "43 Hàng Buồm, Hoàn Kiếm",
+    "description": "Bún thịt nướng thơm ngon, nước mắm chua ngọt, rau sống tươi mát."
+  },
+  {
+    "food": "Bún mắm",
+    "restaurant": "Bún mắm Sài Gòn",
+    "address": "22B Trần Quốc Toản, Hoàn Kiếm",
+    "description": "Bún mắm đậm đà, ăn kèm thịt heo, tôm và rau sống."
+  },
+  {
+    "food": "Bún đậu mắm tôm",
+    "restaurant": "Bún đậu mắm tôm Hàng Khay",
+    "address": "31 Hàng Khay, Hoàn Kiếm",
+    "description": "Bún đậu mắm tôm thơm ngon, đậu phụ chiên giòn, thịt luộc mềm."
+  },
+  {
+    "food": "Mì Quảng",
+    "restaurant": "Mì Quảng Bà Mua",
+    "address": "50 Đào Duy Từ, Hoàn Kiếm",
+    "description": "Mì Quảng đặc sản Quảng Nam, ăn kèm thịt gà, tôm và rau thơm."
+  },
+  {
+    "food": "Bánh canh cua",
+    "restaurant": "Bánh canh cua Sài Gòn",
+    "address": "17B Đào Duy Từ, Hoàn Kiếm",
+    "description": "Bánh canh cua đậm đà, có tôm, thịt heo và các loại rau."
+  },
+  {
+    "food": "Bánh cuốn",
+    "restaurant": "Bánh cuốn Thanh Vân",
+    "address": "12 Hàng Gà, Hoàn Kiếm",
+    "description": "Bánh cuốn mềm mịn, nhân thịt băm, mộc nhĩ, hành phi thơm phức."
+  },
+  {
+    "food": "Bánh xèo",
+    "restaurant": "Bánh xèo Nam Bộ",
+    "address": "74 Cầu Đất, Hai Bà Trưng",
+    "description": "Bánh xèo giòn rụm, nhân tôm, thịt heo và giá đỗ, ăn kèm rau sống và nước mắm."
+  },
+  {
+    "food": "Cơm tấm sườn",
+    "restaurant": "Cơm tấm Sài Gòn",
+    "address": "78 Ngô Thì Nhậm, Hai Bà Trưng",
+    "description": "Cơm tấm ăn kèm sườn nướng thơm lừng, bì, chả và nước mắm."
+  },
+  {
+    "food": "Cơm gà xối mỡ",
+    "restaurant": "Cơm gà xối mỡ Nguyên Hồng",
+    "address": "123 Nguyên Hồng, Đống Đa",
+    "description": "Cơm chiên giòn, gà chiên xối mỡ thơm ngon, nước mắm hấp dẫn."
+  },
+  {
+    "food": "Cơm gà Hải Nam",
+    "restaurant": "Cơm gà Hải Nam Hà Nội",
+    "address": "52 Láng Hạ, Ba Đình",
+    "description": "Cơm nấu từ nước luộc gà, ăn kèm thịt gà luộc thơm, nước chấm đậm đà."
+  },
+  {
+    "food": "Cơm chiên dương châu",
+    "restaurant": "Cơm chiên Dương Châu Chùa Láng",
+    "address": "45 Chùa Láng, Đống Đa",
+    "description": "Cơm chiên với lạp xưởng, trứng, đậu hà lan và cà rốt ngon miệng."
+  },
+  {
+    "food": "Cơm chiên hải sản",
+    "restaurant": "Cơm chiên Hải Sản Nguyễn Khuyến",
+    "address": "92 Nguyễn Khuyến, Đống Đa",
+    "description": "Cơm chiên hải sản với tôm, mực và các loại rau, vị ngon đậm đà."
+  },
+  {
+    "food": "Cơm niêu",
+    "restaurant": "Cơm niêu Hương Việt",
+    "address": "28 Nguyễn Đình Chiểu, Hai Bà Trưng",
+    "description": "Cơm nấu trong niêu đất, ăn kèm thịt kho, cá kho hoặc rau xào."
+  },
+  {
+    "food": "Cơm rang thập cẩm",
+    "restaurant": "Cơm rang thập cẩm Kim Liên",
+    "address": "56 Kim Liên, Đống Đa",
+    "description": "Cơm rang thập cẩm với thịt, tôm, trứng và các loại rau."
+  },
+  {
+    "food": "Cơm bò lúc lắc",
+    "restaurant": "Cơm bò lúc lắc Hồ Đắc Di",
+    "address": "37 Hồ Đắc Di, Đống Đa",
+    "description": "Cơm ăn kèm thịt bò xào với ớt chuông và hành tây, vị ngon tuyệt vời."
+  },
+  {
+    "food": "Cơm sườn bì chả",
+    "restaurant": "Cơm sườn bì chả Tạ Quang Bửu",
+    "address": "18 Tạ Quang Bửu, Hai Bà Trưng",
+    "description": "Cơm tấm ăn kèm sườn nướng, bì và chả trứng."
+  },
+  {
+    "food": "Cơm tấm bì",
+    "restaurant": "Cơm tấm bì Bà Triệu",
+    "address": "45 Bà Triệu, Hoàn Kiếm",
+    "description": "Cơm tấm ăn kèm bì, chả và nước mắm thơm ngon."
+  },
+  {
+    "food": "Cơm gà xối mỡ",
+    "restaurant": "Cơm gà xối mỡ Đại Cồ Việt",
+    "address": "123 Đại Cồ Việt, Hai Bà Trưng",
+    "description": "Cơm chiên giòn, gà chiên xối mỡ thơm ngon, nước mắm hấp dẫn."
+  },
+  {
+    "food": "Cơm gà Hải Nam",
+    "restaurant": "Cơm gà Hải Nam Hà Nội",
+    "address": "52 Láng Hạ, Ba Đình",
+    "description": "Cơm nấu từ nước luộc gà, ăn kèm thịt gà luộc thơm, nước chấm đậm đà."
+  },
+  {
+    "food": "Cơm chiên dương châu",
+    "restaurant": "Cơm chiên Dương Châu Chùa Láng",
+    "address": "45 Chùa Láng, Đống Đa",
+    "description": "Cơm chiên với lạp xưởng, trứng, đậu hà lan và cà rốt ngon miệng."
+  },
+  {
+    "food": "Cơm chiên hải sản",
+    "restaurant": "Cơm chiên Hải Sản Nguyễn Khuyến",
+    "address": "92 Nguyễn Khuyến, Đống Đa",
+    "description": "Cơm chiên hải sản với tôm, mực và các loại rau, vị ngon đậm đà."
+  },
+  {
+    "food": "Cơm niêu",
+    "restaurant": "Cơm niêu Hương Việt",
+    "address": "28 Nguyễn Đình Chiểu, Hai Bà Trưng",
+    "description": "Cơm nấu trong niêu đất, ăn kèm thịt kho, cá kho hoặc rau xào."
+  },
+  {
+    "food": "Cơm rang thập cẩm",
+    "restaurant": "Cơm rang thập cẩm Kim Liên",
+    "address": "56 Kim Liên, Đống Đa",
+    "description": "Cơm rang thập cẩm với thịt, tôm, trứng và các loại rau."
+  },
+  {
+    "food": "Cơm bò lúc lắc",
+    "restaurant": "Cơm bò lúc lắc Hồ Đắc Di",
+    "address": "37 Hồ Đắc Di, Đống Đa",
+    "description": "Cơm ăn kèm thịt bò xào với ớt chuông và hành tây, vị ngon tuyệt vời."
+  },
+  {
+    "food": "Cơm sườn bì chả",
+    "restaurant": "Cơm sườn bì chả Tạ Quang Bửu",
+    "address": "18 Tạ Quang Bửu, Hai Bà Trưng",
+    "description": "Cơm tấm ăn kèm sườn nướng, bì và chả trứng."
+  },
+  {
+    "food": "Cơm tấm bì",
+    "restaurant": "Cơm tấm bì Bà Triệu",
+    "address": "45 Bà Triệu, Hoàn Kiếm",
+    "description": "Cơm tấm ăn kèm bì, chả và nước mắm thơm ngon."
+  },
+  {
+    "food": "Cơm gà xối mỡ",
+    "restaurant": "Cơm gà xối mỡ Đại Cồ Việt",
+    "address": "123 Đại Cồ Việt, Hai Bà Trưng",
+    "description": "Cơm chiên ăn kèm gà chiên giòn và nước mắm hấp dẫn."
+  },
+  {
+    "food": "Cơm gà Hội An",
+    "restaurant": "Cơm gà Hội An Phan Đình Phùng",
+    "address": "67 Phan Đình Phùng, Ba Đình",
+    "description": "Cơm ăn kèm gà luộc, rau thơm và nước mắm đặc biệt."
+  },
+  {
+    "food": "Cơm gà lá chanh",
+    "restaurant": "Cơm gà lá chanh Trần Xuân Soạn",
+    "address": "85 Trần Xuân Soạn, Hai Bà Trưng",
+    "description": "Cơm ăn kèm gà chiên giòn, lá chanh thơm lừng và nước chấm hấp dẫn."
+  },
+  {
+    "food": "Cơm thố gà nướng",
+    "restaurant": "Cơm thố gà nướng Láng Hạ",
+    "address": "42 Láng Hạ, Đống Đa",
+    "description": "Cơm nấu trong thố đất, ăn kèm thịt gà nướng thơm ngon."
+  },
+  {
+    "food": "Cháo lòng",
+    "restaurant": "Cháo lòng Đồng Xuân",
+    "address": "14 Đồng Xuân, Hoàn Kiếm",
+    "description": "Cháo lòng nấu từ lòng heo, hành lá và tiêu, vị ngon đặc trưng."
+  },
+  {
+    "food": "Cháo gà",
+    "restaurant": "Cháo gà Yên Thế",
+    "address": "36 Yên Thế, Ba Đình",
+    "description": "Cháo gà nấu từ gạo, thịt gà và hành lá, thơm ngon bổ dưỡng."
+  },
+  {
+    "food": "Cháo vịt",
+    "restaurant": "Cháo vịt Lạc Long Quân",
+    "address": "78 Lạc Long Quân, Tây Hồ",
+    "description": "Cháo vịt nấu từ gạo, thịt vịt và rau thơm, hấp dẫn và đậm đà."
+  },
+  {
+    "food": "Cháo hàu",
+    "restaurant": "Cháo hàu Hồ Tây",
+    "address": "128 Trích Sài, Tây Hồ",
+    "description": "Cháo hàu tươi ngon, nấu từ hàu tươi, hành lá và tiêu."
+  },
+  {
+    "food": "Miến lươn",
+    "restaurant": "Miến lươn phố Huế",
+    "address": "54 Phố Huế, Hai Bà Trưng",
+    "description": "Miến lươn chiên giòn, ăn kèm rau thơm và nước dùng đậm đà."
+  },
+  {
+    "food": "Miến gà",
+    "restaurant": "Miến gà Hàng Điếu",
+    "address": "10 Hàng Điếu, Hoàn Kiếm",
+    "description": "Miến gà mềm dai, ăn kèm thịt gà và rau thơm, nước dùng ngọt thanh."
+  },
+  {
+    "food": "Miến cua",
+    "restaurant": "Miến cua Đinh Tiên Hoàng",
+    "address": "38 Đinh Tiên Hoàng, Hoàn Kiếm",
+    "description": "Miến cua đậm đà, ăn kèm thịt cua tươi ngon và rau thơm."
+  },
+  {
+    "food": "Miến ngan",
+    "restaurant": "Miến ngan Lý Quốc Sư",
+    "address": "48 Lý Quốc Sư, Hoàn Kiếm",
+    "description": "Miến ngan ăn kèm thịt ngan mềm, nước dùng thanh ngọt và rau thơm."
+  },
+  {
+    "food": "Mì xào giòn",
+    "restaurant": "Mì xào giòn Hàng Buồm",
+    "address": "76 Hàng Buồm, Hoàn Kiếm",
+    "description": "Mì chiên giòn, ăn kèm thịt bò, tôm và rau, nước sốt đậm đà."
+  },
+  {
+    "food": "Mì xào hải sản",
+    "restaurant": "Mì xào hải sản Lê Đại Hành",
+    "address": "98 Lê Đại Hành, Hai Bà Trưng",
+    "description": "Mì xào với tôm, mực và rau, hương vị biển cả đậm đà."
+  },
+  {
+    "food": "Mì xào bò",
+    "restaurant": "Mì xào bò Nguyễn Chí Thanh",
+    "address": "57 Nguyễn Chí Thanh, Đống Đa",
+    "description": "Mì xào bò thơm ngon, ăn kèm rau, vị bò đậm đà hấp dẫn."
+  },
+  {
+    "food": "Mì vịt tiềm",
+    "restaurant": "Mì vịt tiềm Kim Mã",
+    "address": "150 Kim Mã, Ba Đình",
+    "description": "Mì vịt tiềm thơm ngon, ăn kèm vịt tiềm, rau thơm và nước dùng đậm đà."
+  },
+  {
+    "food": "Mì gà tần",
+    "restaurant": "Mì gà tần Tôn Đức Thắng",
+    "address": "98 Tôn Đức Thắng, Đống Đa",
+    "description": "Mì gà tần ăn kèm gà tần, rau thơm, vị thuốc bắc thơm ngon."
+  },
+  {
+    "food": "Bánh tráng trộn",
+    "restaurant": "Bánh tráng trộn Hoàng Diệu",
+    "address": "12 Hoàng Diệu, Ba Đình",
+    "description": "Bánh tráng trộn cắt nhỏ, trộn với trứng cút, khô bò, rau răm và nước mắm."
+  },
+  {
+    "food": "Bánh tráng nướng",
+    "restaurant": "Bánh tráng nướng Trần Đại Nghĩa",
+    "address": "56 Trần Đại Nghĩa, Hai Bà Trưng",
+    "description": "Bánh tráng nướng giòn, ăn kèm trứng, tôm khô, hành phi và nước mắm."
+  },
+  {
+    "food": "Bánh mì thịt nướng",
+    "restaurant": "Bánh mì thịt nướng Chùa Láng",
+    "address": "34 Chùa Láng, Đống Đa",
+    "description": "Bánh mì kẹp thịt nướng thơm lừng, dưa leo, rau thơm và nước mắm."
+  },
+  {
+    "food": "Bánh mì xíu mại",
+    "restaurant": "Bánh mì xíu mại Tạ Quang Bửu",
+    "address": "18 Tạ Quang Bửu, Hai Bà Trưng",
+    "description": "Bánh mì kẹp xíu mại thơm ngon, dưa leo và rau thơm."
+  },
+  {
+    "food": "Bánh mì trứng ốp la",
+    "restaurant": "Bánh mì trứng ốp la Đại La",
+    "address": "67 Đại La, Hai Bà Trưng",
+    "description": "Bánh mì ăn kèm trứng ốp la, pate và rau thơm, hấp dẫn."
+  },
+  {
+    "food": "Bánh mì chả cá",
+    "restaurant": "Bánh mì chả cá Minh Khai",
+    "address": "123 Minh Khai, Hai Bà Trưng",
+    "description": "Bánh mì kẹp chả cá thơm ngon, dưa leo và rau thơm."
+  },
+  {
+    "food": "Gỏi cuốn",
+    "restaurant": "Gỏi cuốn Cửa Bắc",
+    "address": "45 Cửa Bắc, Ba Đình",
+    "description": "Gỏi cuốn từ tôm, thịt heo, rau thơm và bún, nước chấm đậm đà."
+  },
+  {
+    "food": "Nem nướng Nha Trang",
+    "restaurant": "Nem nướng Nha Trang Nguyễn Chí Thanh",
+    "address": "67 Nguyễn Chí Thanh, Đống Đa",
+    "description": "Nem nướng ăn kèm bún, rau thơm và nước mắm, đậm đà hương vị Nha Trang."
+  },
+  {
+    "food": "Chả cá Lã Vọng",
+    "restaurant": "Chả cá Lã Vọng Đường Thành",
+    "address": "14 Đường Thành, Hoàn Kiếm",
+    "description": "Chả cá ăn kèm bún, rau thơm và nước mắm, thơm ngon đặc biệt."
+  },
+  {
+    "food": "Lẩu cá kèo",
+    "restaurant": "Lẩu cá kèo Giang Văn Minh",
+    "address": "123 Giang Văn Minh, Ba Đình",
+    "description": "Lẩu cá kèo với rau muống và bún, nước lẩu đậm đà."
+  },
+  {
+    "food": "Lẩu Thái",
+    "restaurant": "Lẩu Thái Kim Mã",
+    "address": "150 Kim Mã, Ba Đình",
+    "description": "Lẩu Thái với nước dùng chua cay, tôm, mực và rau, hương vị tuyệt vời."
+  }
+]

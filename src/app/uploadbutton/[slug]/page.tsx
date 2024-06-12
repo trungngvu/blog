@@ -2,7 +2,7 @@
 
 // You need to import our styles for the button to look right. Best to import in the root /layout.tsx but this is fine
 import "@uploadthing/react/styles.css";
-import Select from "react-select";
+import CreatableSelect from 'react-select/creatable';
 import { UploadButton } from "../../../utills/uploadthing";
 
 import { use, useEffect, useState } from "react";
@@ -30,12 +30,13 @@ export default function Home() {
   const router = useRouter();
   const pathname = usePathname();
   const [isUpdate, setIsUpdate] = useState(false);
-  const [postCoor, setPostCoor] = useState([]);
+  const [postCoor, setPostCoor] = useState<any>([]);
   const [idUpdate, setIdUpdate] = useState("");
 
   const [data, setData] = useState({
     title: "",
-    coordinates: "",
+    restaurantName: "",
+    address: "",
     content: "",
     image: "",
   });
@@ -51,7 +52,8 @@ export default function Home() {
       if (data) {
         setData({
           title: data.posts.title,
-          coordinates: data.posts.coordinates,
+          restaurantName: data.posts.address,
+          address: data.posts.address,
           content: data.posts.content,
           image: data.posts.image,
         });
@@ -80,9 +82,9 @@ export default function Home() {
       });
       const data = await res.json();
 
-      setPostCoor(data.posts.filter((post) => !!post.coordinates).map((post) => ({
-        label: post.coordinates,
-        value: post.coordinates,
+      setPostCoor(data.posts.filter((post) => !!post.restaurantName).map((post) => ({
+        label: post.restaurantName,
+        value: post.address,
       })));
     } catch (error) {
       console.log(error);
@@ -125,6 +127,16 @@ export default function Home() {
 
   };
 
+  const handleCreate = (inputValue: string) => {
+    const option = {
+      value: '',
+      label: inputValue
+    }    
+
+    setPostCoor((prev: any) => ([...prev, option]))
+    setData((prev) => ({ ...prev, restaurantName: option.label, address: option.value }))
+  };
+
   return (
     <main className="flex min-h-screen w-full xl:w-[70%]    flex-col p-5  sm:p-10   lg:p-24">
       <h1 className="w-full mb-5 font-bold text-left text-black">
@@ -150,25 +162,26 @@ export default function Home() {
             placeholder="Enter title.. "
             onChange={(e) => setData({ ...data, title: e.target.value })}
           />
-          {/* <input
-            type="text"
-            name={data.coordinates}
-            value={data.coordinates}
-            className="w-60 mt-5 mr-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
-            placeholder="Enter coordinates.."
-            onChange={(e) => setData({ ...data, coordinates: e.target.value })}
-          /> */}
-          <Select
+          <CreatableSelect
             className="mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             options={postCoor}
-            onChange={(e) => setData((prev) => ({ ...prev, coordinates: e.value }))}
-            value={{ label: data.coordinates, value: data.coordinates }}
-            placeholder="Select or type address..."
+            onChange={(e) => setData((prev) => ({ ...prev, restaurantName: e?.label, address: e?.value }))}
+            onCreateOption={handleCreate}
+            value={{ label: data.restaurantName, value: data.address }}
+            placeholder="Select or type restaurant name..."
             isSearchable={true}
-            getOptionValue={(option) => option.value}
-            name={data.coordinates}
+            getOptionValue={(option) => option.label}
+            name={data.restaurantName}
+            isClearable
           />
-          {/* <span className="text-gray-400">Example: 105°48′00″E;21°02′00″N</span> */}
+          <input
+            type="text"
+            name={data.address}
+            value={data.address}
+            className="w-full mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            placeholder="Enter address.. "
+            onChange={(e) => setData({ ...data, address: e.target.value })}
+          />
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
             <Editor onChange={(e) => setData({ ...data, content: e })} />
           </div>

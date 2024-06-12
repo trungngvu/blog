@@ -24,6 +24,8 @@ export const PUT = async (request: NextRequest) => {
         content: data.content,
         image: data.image,
         category: data.category,
+        restaurantName: data.restaurantName,
+        address: data.address,
       }
     );
 

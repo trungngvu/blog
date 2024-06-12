@@ -48,18 +48,14 @@ export default function Home() {
         if (data) {
           setData({
             title: data.posts.title,
-            restaurantName: data.posts.address,
+            restaurantName: data.posts.restaurantName,
             address: data.posts.address,
             content: data.posts.content,
             image: data.posts.image,
           });
         }
-      } catch {}
-
-      if (pathname.split("/")[2].includes("update")) {
-        const id = pathname.split("/")[2].split("-")[1];
-        setIsUpdate(true);
-        fetchData();
+      } catch {
+        console.log("error");
       }
     };
 
@@ -97,7 +93,6 @@ export default function Home() {
 
   const handleSubmit = async () => {
     setLoading(true);
-    console.log("data", data);
 
     const response = await axios
       .post("/api/post/create", { ...data, category: selected.name })

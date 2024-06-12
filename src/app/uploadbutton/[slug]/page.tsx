@@ -41,11 +41,15 @@ export default function Home() {
 
  useEffect(() => {
   const fetchData = async (id: string) => {
+    console.log("id in a post by id: ", id);
+    
     try {
-      const posts = await fetch(`https://blog-story.vercel.app/api/post/fetch?id=${id}`, {
+      const posts = await fetch(`http://localhost:3000/api/post/fetch?id=${id}`, {
         cache: "no-store",
       });
       const data = await posts.json();
+
+      console.log("data in a post by id: ", data);
 
       if (data) {
         setData({
@@ -57,6 +61,8 @@ export default function Home() {
       }
     } catch (error) {
       console.log(error);
+      console.log("error in a post by id: ", error);
+      
     }
   };
 
@@ -72,7 +78,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
     try {
-      const res = await fetch(`https://blog-story.vercel.app/api/post/fetch`, {
+      const res = await fetch(`http://localhost:3000/api/post/fetch`, {
         cache: "no-store",
       });
       const data = await res.json();
@@ -157,7 +163,7 @@ export default function Home() {
           />
           <Select
             value={data.coordinates}
-            onChange={(e) => setData({ ...data, coordinates: e.value })}
+            onChange={(e) => setData({ ...data, coordinates: e?.value })}
             options={postCoor}
             isClearable
             placeholder="Select coordinates..."

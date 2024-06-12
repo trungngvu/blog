@@ -16,7 +16,7 @@ import dataMenu from "../../swipe/menu.json"
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [people, setPeople] = useState<{name: string}[]>([]);
-  const [selected, setSelected] = useState(people[0]);
+  const [selected, setSelected] = useState<any>();
   const [btn, setButton] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -34,6 +34,7 @@ export default function Home() {
 
   useEffect(() => {
     setPeople(dataMenu.map((item) => ({ name: item.food })));
+    setSelected({ name: dataMenu[0].food });
   }, []);
 
   useEffect(() => {

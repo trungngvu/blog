@@ -7,7 +7,6 @@ const fetchPosts = async () => {
       cache: "no-store",
     });
     const data = await res.json();
-
     return data.posts;
   } catch (error) {
     console.log(error);

@@ -13,10 +13,10 @@ const Sidebar = () => {
       {pathname.split("/")[1] == "profile" ? (
         <UserProfile />
       ) : (
-        <div className="">
+        <>
           <SubscriptionCard />
           <UserCard />
-        </div>
+        </>
       )}
     </div>
   );

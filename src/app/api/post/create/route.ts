@@ -10,7 +10,6 @@ export const POST = async (request: NextRequest) => {
   try {
     await dbConnection();
     const session: any = await getServerSession(authOptions);
-   
 
     if (!session) {
       return NextResponse.json({ message: "UnAuthorized" }, { status: 404 });
@@ -20,6 +19,8 @@ export const POST = async (request: NextRequest) => {
       coordinates: data.coordinates,
       content: data.content,
       image: data.image,
+      restaurantName: data.restaurantName,
+      address: data.address,
 
       category: data.category,
       author: {

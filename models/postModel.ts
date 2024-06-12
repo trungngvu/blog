@@ -5,7 +5,11 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  coordinates: {
+  restaurantName: {
+    type: String,
+    required: true,
+  },
+  address: {
     type: String,
     required: true,
   },

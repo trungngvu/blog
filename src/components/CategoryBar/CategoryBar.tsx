@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropDown from "../DropDown/DropDown";
+import dataMenu from "../../app/swipe/menu.json";
 
 const CategoryBar = () => {
   const pathname = usePathname();
@@ -14,43 +15,10 @@ const CategoryBar = () => {
       pathname.split("/")[2].slice(1);
   }
 
-  const data = [
-    {
-      id: 0,
-      label: "All",
-      path: "/",
-    },
-    {
-      id: 0.1,
-      label: "Food",
-      path: "/category/food",
-    },
-    {
-      id: 1,
-      label: "Drinks",
-      path: "/category/drinks",
-    },
-    {
-      id: 2,
-      label: "Rice",
-      path: "/category/rice",
-    },
-    {
-      id: 3,
-      label: "Noodles",
-      path: "/category/noodles",
-    },
-    {
-      id: 4,
-      label: "Bread",
-      path: "/category/bread",
-    },
-    {
-      id: 5,
-      label: "Porridge",
-      path: "/category/porridge",
-    },
-  ];
+  const [data, setData] = useState<any[]>([]);
+  useEffect(() => {
+    setData(dataMenu.slice(0, 10).map((item, index) => ({ id: index, label: item.food, path: `/category/${item.food.toLowerCase()}` })));
+  }, []);
 
   const people = [
     { name: "Home", path: "/" },

@@ -1,12 +1,12 @@
-import { dbConnection } from "@/utills/dbConnect";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]/route";
+import { dbConnection } from "@/utills/dbConnect";
+import { NextRequest, NextResponse } from "next/server";
 import Post from "../../../../../models/postModel";
+import User from "../../../../../models/userModels";
 
 export const PUT = async (request: NextRequest) => {
   const data = await request.json();
-  const id: string = request.nextUrl.searchParams.get("id") || "";
 
   try {
     await dbConnection();
@@ -15,17 +15,14 @@ export const PUT = async (request: NextRequest) => {
     if (!session) {
       return NextResponse.json({ message: "UnAuthorized" }, { status: 404 });
     }
-    await Post.findOneAndUpdate(
+    await User.findOneAndUpdate(
       {
-        _id: id,
+        _id: session.user.id,
       },
       {
-        title: data.title,
-        content: data.content,
-        image: data.image,
-        category: data.category,
-        restaurantName: data.restaurantName,
-        address: data.address,
+        $push: {
+          like: data.food,
+        },
       }
     );
 
@@ -44,3 +41,5 @@ export const PUT = async (request: NextRequest) => {
     );
   }
 };
+
+

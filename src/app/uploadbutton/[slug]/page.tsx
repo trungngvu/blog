@@ -21,8 +21,6 @@ const people = [
   { name: "Porridge" },
 ];
 
-
-
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(people[0]);
@@ -39,60 +37,63 @@ export default function Home() {
     image: "",
   });
 
- useEffect(() => {
-  const fetchData = async (id: string) => {
-    console.log("id in a post by id: ", id);
-    
-    try {
-      const posts = await fetch(`http://localhost:3000/api/post/fetch?id=${id}`, {
-        cache: "no-store",
-      });
-      const data = await posts.json();
+  useEffect(() => {
+    const fetchData = async (id: string) => {
+      console.log("id in a post by id: ", id);
 
-      console.log("data in a post by id: ", data);
+      try {
+        const posts = await fetch(
+          `${process.env.NEXTAUTH_URL}api/post/fetch?id=${id}`,
+          {
+            cache: "no-store",
+          }
+        );
+        const data = await posts.json();
 
-      if (data) {
-        setData({
-          title: data.posts.title,
-          coordinates: data.posts.coordinates,
-          content: data.posts.content,
-          image: data.posts.image,
-        });
+        console.log("data in a post by id: ", data);
+
+        if (data) {
+          setData({
+            title: data.posts.title,
+            coordinates: data.posts.coordinates,
+            content: data.posts.content,
+            image: data.posts.image,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        console.log("error in a post by id: ", error);
       }
-    } catch (error) {
-      console.log(error);
-      console.log("error in a post by id: ", error);
-      
+    };
+
+    if (pathname.split("/")[2].includes("update")) {
+      const id = pathname.split("/")[2].split("-")[1];
+      setIsUpdate(true);
+      fetchData(id.toString());
     }
-  };
-
-  if (pathname.split("/")[2].includes("update")) {
-    const id = pathname.split("/")[2].split("-")[1];
-    setIsUpdate(true);
-    fetchData(id.toString());
-  }
-
   }, [pathname]);
 
   // get full post data
   useEffect(() => {
     const fetchPosts = async () => {
-    try {
-      const res = await fetch(`http://localhost:3000/api/post/fetch`, {
-        cache: "no-store",
-      });
-      const data = await res.json();
+      try {
+        const res = await fetch(`${process.env.NEXTAUTH_URL}api/post/fetch`, {
+          cache: "no-store",
+        });
+        const data = await res.json();
 
-      setPostCoor(data.posts.map((post) => ({
-        label: post.coordinates,
-        value: post.coordinates,
-      })));
-    } catch (error) {
-      console.log(error);
-    }}
+        setPostCoor(
+          data.posts.map((post: any) => ({
+            label: post.coordinates,
+            value: post.coordinates,
+          }))
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     fetchPosts();
-
   }, []);
 
   const handleSubmit = async () => {
@@ -125,7 +126,6 @@ export default function Home() {
         setLoading(false);
         console.log(error);
       });
-
   };
 
   return (
@@ -157,7 +157,7 @@ export default function Home() {
             type="text"
             name={data.coordinates}
             value={data.coordinates}
-            className="w-60 mt-5 mr-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            className="p-2 mt-5 mr-5 text-xs border rounded-lg w-60 md:text-lg focus:outline-none border-slate-500"
             placeholder="Enter coordinates.."
             onChange={(e) => setData({ ...data, coordinates: e.target.value })}
           />

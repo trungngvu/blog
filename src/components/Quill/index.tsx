@@ -6,9 +6,10 @@ Quill.register("modules/imageResize", ImageResize);
 
 interface props {
   onChange: (value: string) => void;
+  value: string;
 }
 
-export default function Editor({ onChange }: props) {
+export default function Editor({ onChange, value }: props) {
   const modules = {
     toolbar: [
       [{ font: [] }, { header: [1, 2, 3, 4, 5, 6, false] }],
@@ -32,6 +33,7 @@ export default function Editor({ onChange }: props) {
       modules={modules}
       theme="snow"
       onChange={onChange}
+      value={value}
       placeholder="Enter Story....."
     />
   );

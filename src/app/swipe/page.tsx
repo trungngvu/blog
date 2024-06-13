@@ -11,7 +11,6 @@ const fetchPosts = async () => {
       cache: "no-store",
     });
     const data = await res.json();
-    console.log(data.posts.length);
 
     return data.posts;
   } catch (error) {
@@ -92,13 +91,27 @@ function Advanced() {
   }, []);
 
   const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);
-  useEffect(() => {
+  // useEffect(() => {
+  //   console.log("selectedItems: ", db, selectedItems, list);
+    
+  //   setDb((prev: any) =>
+  //     prev?.filter((e: any) =>
+  //       selectedItems.map((i: number) => list[i].toLowerCase()).includes(e.category.toLowerCase())
+  //     )
+  //   );
+  // }, [selectedItems]);
+
+  const handleSubmitFilter = () => {
     setDb((prev: any) =>
       prev?.filter((e: any) =>
-        selectedItems.map((i: number) => list[i]).includes(e.category)
+        selectedItems.map((i: number) => list[i].toLowerCase()).includes(e.category.toLowerCase())
       )
     );
-  }, [selectedItems]);
+  }
+
+  useEffect(() => {
+    setCurrentIndex(db.length - 1);
+  }, [db]);
 
   return (
     <div className="flex flex-col items-center xl:w-[70%] grow xl:grow-0 pt-10 gap-5">
@@ -126,7 +139,10 @@ function Advanced() {
           </div>
           <div className="buttons">
             <button
-              onClick={() => setStep(1)}
+              onClick={() => {
+                setStep(1)
+                handleSubmitFilter()
+              }}
               style={{ backgroundColor: "blue", zIndex: 100 }}
             >
               Next!!
@@ -154,7 +170,7 @@ function Advanced() {
               </TinderCard>
             ))}
           </div>
-          <div className="buttons">
+          {/* <div className="buttons">
             <button
               style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
               onClick={() => swipe("left")}
@@ -164,13 +180,11 @@ function Advanced() {
 
             <button
               style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
-              onClick={() => {
-                swipe("right");
-              }}
+              onClick={() => swipe("right")}
             >
               Swipe right!
             </button>
-          </div>
+          </div> */}
           {db[currentIndex]?._id && (
             <div className="buttons">
               <Link href={`/post/${db[currentIndex]?._id}`}>

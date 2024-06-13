@@ -196,7 +196,7 @@ export default function Home() {
             onChange={(e) => setData({ ...data, address: e.target.value })}
           />
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
-            <Editor onChange={(e) => setData({ ...data, content: e })} />
+            <Editor onChange={(e) => setData({ ...data, content: e })} value={data?.content} />
           </div>
           <div className="flex gap-12">
             <UploadButton

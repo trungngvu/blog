@@ -23,6 +23,10 @@ const SinglePost = async ({ params }: { params: { slug: string } }) => {
       <p className="mt-1 text-sm">
         {new Date(data?.createdAt).toLocaleString()}
       </p>
+      <p>
+        <div className="mt-5">Tên quán ăn: <b>{data?.restaurantName}</b></div> 
+        <div>Địa chỉ: <b>{data?.address}</b></div>
+      </p>
       <div className="flex items-center gap-2 mt-5 cursor-pointer ">
         <Image
           src={data?.author.avatar}

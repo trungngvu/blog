@@ -100,6 +100,13 @@ function Advanced() {
     );
   }, [selectedItems]);
 
+  useEffect(() => {
+    setCurrentIndex(db.length - 1);
+  }, [db]);
+
+  console.log("db[currentIndex]?._id: ", currentIndex, db[currentIndex]?._id);
+  
+
   return (
     <div className="flex flex-col items-center xl:w-[70%] grow xl:grow-0 pt-10 gap-5">
       {step === 0 ? (
@@ -154,7 +161,7 @@ function Advanced() {
               </TinderCard>
             ))}
           </div>
-          <div className="buttons">
+          {/* <div className="buttons">
             <button
               style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
               onClick={() => swipe("left")}
@@ -170,7 +177,7 @@ function Advanced() {
             >
               Swipe right!
             </button>
-          </div>
+          </div> */}
           {db[currentIndex]?._id && (
             <div className="buttons">
               <Link href={`/post/${db[currentIndex]?._id}`}>

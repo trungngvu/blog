@@ -15,9 +15,9 @@ const CategoryBar = () => {
       pathname.split("/")[2].slice(1);
   }
 
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([{ id: 0, label: "All", path: "/"}]);
   useEffect(() => {
-    setData(dataMenu.slice(0, 10).map((item, index) => ({ id: index, label: item.food, path: `/category/${item.food.toLowerCase()}` })));
+    setData((prev => [...prev, ...dataMenu.map((item, index) => ({ id: index+1, label: item.food, path: `/category/${item.food.toLowerCase()}` }))]));
   }, []);
 
   const people = [
@@ -31,12 +31,12 @@ const CategoryBar = () => {
   return (
     <>
       <div className="flex-col items-center justify-center hidden gap-5 mt-5 font-normal bg-white xl:flex xl:min-w-full">
-        <div className="flex items-center justify-center gap-5">
+        <div className="flex gap-5 overflow-x-scroll max-w-full px-5">
           {data.map((item) => (
             <Link
               href={item.path}
               key={item.id}
-              className={`${
+              className={`whitespace-nowrap ${
                 item.label === "Home"
                   ? "font-extrabold"
                   : item.label === convertedStr

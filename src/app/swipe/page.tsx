@@ -11,7 +11,6 @@ const fetchPosts = async () => {
       cache: "no-store",
     });
     const data = await res.json();
-    console.log(data.posts.length);
 
     return data.posts;
   } catch (error) {
@@ -114,9 +113,6 @@ function Advanced() {
     setCurrentIndex(db.length - 1);
   }, [db]);
 
-  console.log("db[currentIndex]?._id: ", currentIndex, db[currentIndex]?._id);
-  
-
   return (
     <div className="flex flex-col items-center xl:w-[70%] grow xl:grow-0 pt-10 gap-5">
       {step === 0 ? (
@@ -184,9 +180,7 @@ function Advanced() {
 
             <button
               style={{ backgroundColor: !canSwipe ? "#c3c4d3" : "" }}
-              onClick={() => {
-                swipe("right");
-              }}
+              onClick={() => swipe("right")}
             >
               Swipe right!
             </button>

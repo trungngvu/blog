@@ -92,13 +92,23 @@ function Advanced() {
   }, []);
 
   const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);
-  useEffect(() => {
+  // useEffect(() => {
+  //   console.log("selectedItems: ", db, selectedItems, list);
+    
+  //   setDb((prev: any) =>
+  //     prev?.filter((e: any) =>
+  //       selectedItems.map((i: number) => list[i].toLowerCase()).includes(e.category.toLowerCase())
+  //     )
+  //   );
+  // }, [selectedItems]);
+
+  const handleSubmitFilter = () => {
     setDb((prev: any) =>
       prev?.filter((e: any) =>
-        selectedItems.map((i: number) => list[i]).includes(e.category)
+        selectedItems.map((i: number) => list[i].toLowerCase()).includes(e.category.toLowerCase())
       )
     );
-  }, [selectedItems]);
+  }
 
   useEffect(() => {
     setCurrentIndex(db.length - 1);
@@ -133,7 +143,10 @@ function Advanced() {
           </div>
           <div className="buttons">
             <button
-              onClick={() => setStep(1)}
+              onClick={() => {
+                setStep(1)
+                handleSubmitFilter()
+              }}
               style={{ backgroundColor: "blue", zIndex: 100 }}
             >
               Next!!

@@ -10,6 +10,9 @@ interface props {
 }
 
 export default function Editor({ onChange, value }: props) {
+  console.log("value in editor: ", value);
+  
+
   const modules = {
     toolbar: [
       [{ font: [] }, { header: [1, 2, 3, 4, 5, 6, false] }],

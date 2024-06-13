@@ -140,6 +140,9 @@ export default function Home() {
     }));
   };
 
+  console.log("data?.content: ", data?.content);
+  
+
   return (
     <main className="flex min-h-screen w-full xl:w-[70%]    flex-col p-5  sm:p-10   lg:p-24">
       <h1 className="w-full mb-5 font-bold text-left text-black">
@@ -196,7 +199,7 @@ export default function Home() {
             onChange={(e) => setData({ ...data, address: e.target.value })}
           />
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
-            <Editor onChange={(e) => setData({ ...data, content: e })} value={data?.content} />
+            <Editor onChange={(e) => setData((prev) => ({ ...prev, content: e }))} value={data?.content} />
           </div>
           <div className="flex gap-12">
             <UploadButton

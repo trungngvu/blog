@@ -11,11 +11,11 @@ import Editor from "@/components/Quill";
 import { title } from "process";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
-import dataMenu from "../../swipe/menu.json"
+import dataMenu from "../../swipe/menu.json";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [people, setPeople] = useState<{name: string}[]>([]);
+  const [people, setPeople] = useState<{ name: string }[]>([]);
   const [selected, setSelected] = useState<any>();
   const [btn, setButton] = useState(false);
   const router = useRouter();
@@ -141,7 +141,6 @@ export default function Home() {
   };
 
   console.log("data?.content: ", data?.content);
-  
 
   return (
     <main className="flex min-h-screen w-full xl:w-[70%]    flex-col p-5  sm:p-10   lg:p-24">
@@ -173,7 +172,7 @@ export default function Home() {
             }
           />
           <CreatableSelect
-            className="mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            className="p-2 mt-5 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             options={postCoor}
             onChange={(e) => {
               setData((prev: any) => ({
@@ -186,7 +185,7 @@ export default function Home() {
             value={{ label: data.restaurantName, value: data.address }}
             placeholder="Select or type restaurant name..."
             isSearchable={true}
-            getOptionValue={(option) => option.label}
+            getOptionValue={(option: any) => option.label}
             name={data.restaurantName}
             isClearable
           />
@@ -194,12 +193,15 @@ export default function Home() {
             type="text"
             name={data.address}
             value={data.address}
-            className="w-full mt-5 p-2 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
+            className="w-full p-2 mt-5 text-xs border rounded-lg md:text-lg focus:outline-none border-slate-500"
             placeholder="Enter address.. "
             onChange={(e) => setData({ ...data, address: e.target.value })}
           />
           <div className="w-full mt-5 mb-10 text-xs rounded-lg md:text-lg">
-            <Editor onChange={(e) => setData((prev) => ({ ...prev, content: e }))} value={data?.content} />
+            <Editor
+              onChange={(e) => setData((prev) => ({ ...prev, content: e }))}
+              value={data?.content}
+            />
           </div>
           <div className="flex gap-12">
             <UploadButton

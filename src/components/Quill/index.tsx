@@ -11,7 +11,6 @@ interface props {
 
 export default function Editor({ onChange, value }: props) {
   console.log("value in editor: ", value);
-  
 
   const modules = {
     toolbar: [
@@ -36,6 +35,7 @@ export default function Editor({ onChange, value }: props) {
       modules={modules}
       theme="snow"
       onChange={onChange}
+      defaultValue={value}
       value={value}
       placeholder="Enter Story....."
     />

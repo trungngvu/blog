@@ -63,7 +63,7 @@ export default function Home() {
       setIsUpdate(true);
       fetchData();
     }
-  }, [idUpdate]);
+  }, [pathname, idUpdate]);
 
   // get full post data
   useEffect(() => {
@@ -181,6 +181,7 @@ export default function Home() {
               }));
             }}
             onCreateOption={handleCreate}
+            defaultValue={{ label: data.restaurantName, value: data.address }}
             value={{ label: data.restaurantName, value: data.address }}
             placeholder="Select or type restaurant name..."
             isSearchable={true}

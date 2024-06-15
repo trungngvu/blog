@@ -5,10 +5,9 @@ import "@uploadthing/react/styles.css";
 import CreatableSelect from "react-select/creatable";
 import { UploadButton } from "../../../utills/uploadthing";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DropDown from "@/components/DropDown/DropDown";
 import Editor from "@/components/Quill";
-import { title } from "process";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import dataMenu from "../../swipe/menu.json";
@@ -64,7 +63,7 @@ export default function Home() {
       setIsUpdate(true);
       fetchData();
     }
-  }, [pathname, idUpdate]);
+  }, [idUpdate]);
 
   // get full post data
   useEffect(() => {

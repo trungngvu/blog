@@ -93,7 +93,7 @@ function Advanced() {
   const [selectedItemsName, setSelectedItemsName] = useState<string[]>([]);
   // useEffect(() => {
   //   console.log("selectedItems: ", db, selectedItems, list);
-    
+
   //   setDb((prev: any) =>
   //     prev?.filter((e: any) =>
   //       selectedItems.map((i: number) => list[i].toLowerCase()).includes(e.category.toLowerCase())
@@ -104,10 +104,12 @@ function Advanced() {
   const handleSubmitFilter = () => {
     setDb((prev: any) =>
       prev?.filter((e: any) =>
-        selectedItems.map((i: number) => list[i].toLowerCase()).includes(e.category.toLowerCase())
+        selectedItems
+          .map((i: number) => list[i].toLowerCase())
+          .includes(e.category.toLowerCase())
       )
     );
-  }
+  };
 
   useEffect(() => {
     setCurrentIndex(db.length - 1);
@@ -140,8 +142,8 @@ function Advanced() {
           <div className="buttons">
             <button
               onClick={() => {
-                setStep(1)
-                handleSubmitFilter()
+                setStep(1);
+                handleSubmitFilter();
               }}
               style={{ backgroundColor: "blue", zIndex: 100 }}
             >
@@ -187,7 +189,7 @@ function Advanced() {
           </div> */}
           {db[currentIndex]?._id && (
             <div className="buttons">
-              <Link href={`/post/${db[currentIndex]?._id}`}>
+              <Link href={`/post/${db[currentIndex]?._id}`} target="_blank">
                 <button style={{ backgroundColor: "red" }}>See detail!!</button>
               </Link>
             </div>

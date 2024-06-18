@@ -187,6 +187,10 @@ function Advanced() {
               Swipe right!
             </button>
           </div> */}
+          <div className="flex flex-col items-center">
+            <div>Swipe card left to skip</div>
+            <div>Swipe card right to add to favorite</div>
+          </div>
           {db[currentIndex]?._id && (
             <div className="buttons">
               <Link href={`/post/${db[currentIndex]?._id}`} target="_blank">
